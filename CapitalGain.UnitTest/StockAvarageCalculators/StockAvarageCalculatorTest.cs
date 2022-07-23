@@ -18,10 +18,8 @@ namespace CapitalGain.UnitTest.StockAvarageCalculators
         public void Calc_stock_avarage_with_sucess(int currentStockAmount, decimal currentWeightMedia, int stockQuantity, decimal stockPurchaseValue, decimal expectedResult)
         {
             StockAverageCalculator stockAvarageCalculator = new StockAverageCalculator();
-
             var newWeightMedia = stockAvarageCalculator.Average(currentStockAmount, currentWeightMedia, stockQuantity, stockPurchaseValue);
             newWeightMedia.Should().Be(expectedResult);
-
 
         }
     }
