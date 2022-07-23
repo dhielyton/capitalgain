@@ -8,7 +8,7 @@ using Xunit;
 
 namespace CapitalGain.UnitTest.Operations
 {
-    public class ConvertJsonInOperationTest
+    public class ConvertJsonInOperationDTOTest
     {
 
 
@@ -23,10 +23,7 @@ namespace CapitalGain.UnitTest.Operations
         }
 
 
-        public void Convert_input_json_in_order_with_exception()
-        {
-
-        }
+       
         
     }
 

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CapitalGain.Application\CapitalGain.Application.csproj" />
+    <ProjectReference Include="..\CapitalGain.Domain\CapitalGain.Domain.csproj" />
   </ItemGroup>
 
 </Project>
