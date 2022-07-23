@@ -3,3 +3,9 @@
 ################################################################################
 
 /CapitalGain.Application/bin/Debug/net5.0
+/CapitalGain.Application/obj
+/CapitalGain.Console/obj
+/CapitalGain.Domain/obj
+/CapitalGain.UnitTest/bin
+/CapitalGain.UnitTest/obj
+/.vs
