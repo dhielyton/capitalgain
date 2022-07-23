@@ -17,11 +17,11 @@ namespace CapitalGain.Domain.Operations
 
         public decimal ExemptionLimit { get; set; }
         public decimal PercentualTax { get; set; }
-        public decimal CalcTaxValue(decimal profit)
+        public decimal CalcTaxValue(decimal profit, decimal loss)
         {
             if(profit >= ExemptionLimit)
             {
-                return profit * (PercentualTax / 100);
+                return (profit-loss) * (PercentualTax / 100);
             }
 
             return 0.00M;
