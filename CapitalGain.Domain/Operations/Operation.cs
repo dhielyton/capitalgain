@@ -13,7 +13,13 @@ namespace CapitalGain.Domain.Operations
         public OperationType OperationType { get; set; }
         public decimal UnitCost { get; set; }
         public int Quantity { get; set; }
-        public decimal Tax { get; private set; }
+        public decimal Total { get; private set; }
+
+        public void Process()
+        {
+            Total = Quantity * UnitCost;
+            
+        }
 
     }
 }
