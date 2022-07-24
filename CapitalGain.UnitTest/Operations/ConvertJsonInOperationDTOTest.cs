@@ -24,6 +24,8 @@ namespace CapitalGain.UnitTest.Operations
             operations.Count.Should().Be(expectAmount);
         }
 
+        
+
         [Theory]
         [InlineData("[{\"operation\":\"buy\", \"unit-cost\":10.00,\"quantity\": 10000}]",
             "buy",10.00,10000)]

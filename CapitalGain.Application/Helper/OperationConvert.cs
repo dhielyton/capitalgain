@@ -1,4 +1,5 @@
 ﻿using CapitalGain.Application.Model;
+using CapitalGain.Domain.Operations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,23 @@ namespace CapitalGain.Application.Helper
         {
             var operation = JsonConvert.DeserializeObject<List<OperationDTO>>(json);
             
+            return operation;
+        }
+
+        public static Operation Convert(this OperationDTO operationDTO)
+        {
+            var operation = new Operation();
+            switch (operationDTO.OperationType.ToLower())
+            {
+                case "sell":
+                    operation.OperationType = OperationType.SELL;
+                    break;
+                case "buy":
+                    operation.OperationType = OperationType.BUY;
+                    break;
+            }
+            operation.Quantity = operationDTO.Quantity;
+            operation.UnitCost = operationDTO.UnitCost;
             return operation;
         }
     }
