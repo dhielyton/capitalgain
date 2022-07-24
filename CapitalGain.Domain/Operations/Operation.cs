@@ -9,13 +9,11 @@ namespace CapitalGain.Domain.Operations
 {
     public class Operation
     {
-        [JsonProperty("operation")]
-        public string OperationType { get; set; }
-
-        [JsonProperty("unit-cost")]
-        public double UnitCost { get; set; }
-
-        [JsonProperty("quantity")]
+        
+        public OperationType OperationType { get; set; }
+        public decimal UnitCost { get; set; }
         public int Quantity { get; set; }
+        public decimal Tax { get; private set; }
+
     }
 }

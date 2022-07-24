@@ -4,6 +4,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace CapitalGain.UnitTest.Operations
@@ -23,6 +24,16 @@ namespace CapitalGain.UnitTest.Operations
             operations.Count.Should().Be(expectAmount);
         }
 
+        [Theory]
+        [InlineData("[{\"operation\":\"buy\", \"unit-cost\":10.00,\"quantity\": 10000}]",
+            "buy",10.00,10000)]
+        public void Validate_converion_json_in_operator(string input, string expectedOperationType, decimal expectedUnitCost, int expectedQuantity )
+        {
+            var operation = input.Convert().First();
+            operation.OperationType.Should().Be(expectedOperationType);
+            operation.UnitCost.Should().Be(expectedUnitCost);
+            operation.Quantity.Should().Be(expectedQuantity);
+        }
 
        
         
