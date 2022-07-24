@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CapitalGain.Console": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
