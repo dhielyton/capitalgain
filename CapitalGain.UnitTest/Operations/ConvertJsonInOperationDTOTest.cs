@@ -27,7 +27,7 @@ namespace CapitalGain.UnitTest.Operations
         [Theory]
         [InlineData("[{\"operation\":\"buy\", \"unit-cost\":10.00,\"quantity\": 10000}]",
             "buy",10.00,10000)]
-        public void Validate_converion_json_in_operator(string input, string expectedOperationType, decimal expectedUnitCost, int expectedQuantity )
+        public void Validate_conversion_json_in_operator(string input, string expectedOperationType, decimal expectedUnitCost, int expectedQuantity )
         {
             var operation = input.Convert().First();
             operation.OperationType.Should().Be(expectedOperationType);
