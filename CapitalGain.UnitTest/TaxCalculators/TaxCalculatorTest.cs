@@ -19,25 +19,14 @@ namespace CapitalGain.UnitTest.TaxCalculators
         [InlineData(30000.00,25000.00,1000)]
         public void Calc_Tax(decimal profit,decimal loss ,decimal expectedResult)
         {
-            TaxCalculator taxCalculator = new TaxCalculator();
+            TaxCalculator taxCalculator =  TaxCalculator.CreateTaxtCalulator();
             decimal valueTax = taxCalculator.CalcTaxValue(profit,loss);
             valueTax.Should().Be(expectedResult);
 
 
         }
 
-        [Fact]
-        public void Calc_Tax_operations()
-        {
-            Stock stockAverage = new Stock();
-
-
-            List<Operation> operations = new List<Operation>();
-            operations.Add(new Operation { OperationType = OperationType.BUY, Quantity = 1000, UnitCost = 50.00M });
-            operations.Add(new Operation { OperationType = OperationType.BUY, Quantity = 1000, UnitCost = 50.00M });
-
-
-        }
+       
 
 
 

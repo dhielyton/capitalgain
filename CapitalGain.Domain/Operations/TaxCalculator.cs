@@ -8,15 +8,14 @@ namespace CapitalGain.Domain.Operations
 {
     public class TaxCalculator
     {
-
-        public TaxCalculator()
+        public TaxCalculator(decimal exemptionLimit, decimal percentualTax)
         {
-            PercentualTax = 20.00M;
-            ExemptionLimit = 20000.00M;
+            ExemptionLimit = exemptionLimit;
+            PercentualTax = percentualTax;
         }
 
-        public decimal ExemptionLimit { get; set; }
-        public decimal PercentualTax { get; set; }
+        public decimal ExemptionLimit { get; private set; }
+        public decimal PercentualTax { get; private set; }
         public decimal CalcTaxValue(decimal profit, decimal loss)
         {
             if(profit >= ExemptionLimit)
@@ -25,6 +24,12 @@ namespace CapitalGain.Domain.Operations
             }
 
             return 0.00M;
+        }
+
+        public static TaxCalculator CreateTaxtCalulator()
+        {
+            TaxCalculator taxCalculator = new TaxCalculator(20000M, 20.00M);
+            return taxCalculator;
         }
     }
 }

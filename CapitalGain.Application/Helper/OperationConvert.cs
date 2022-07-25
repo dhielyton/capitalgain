@@ -34,5 +34,10 @@ namespace CapitalGain.Application.Helper
             operation.UnitCost = operationDTO.UnitCost;
             return operation;
         }
+
+        public static TaxDTO Convert(this Operation operation)
+        {
+            return new TaxDTO { Tax = operation.Tax };
+        }
     }
 }

@@ -32,7 +32,29 @@ namespace CapitalGain.Domain.Stocks
 
         public void ProcessTax(Operation operation)
         {
+            if (operation.OperationType == OperationType.BUY)
+                return;
+            
+           
+        }
 
+        public void ProcessProfitOrLoss(Operation operation)
+        {
+            if (operation.OperationType == OperationType.SELL)
+            {
+                if (WeightedAverage < operation.UnitCost)
+                {
+                    var precentProfit = WeightedAverage / operation.UnitCost;
+                    Profit = operation.Total * precentProfit;
+
+                }
+                else
+                {
+                    var percentLoss = operation.UnitCost / WeightedAverage;
+                    Loss = percentLoss * (operation.Quantity * WeightedAverage);
+
+                }
+            }
         }
     }
 }
