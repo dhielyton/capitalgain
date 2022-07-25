@@ -1,4 +1,5 @@
 ﻿using CapitalGain.Domain.Operations;
+using CapitalGain.Domain.Stocks;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,21 @@ namespace CapitalGain.UnitTest.TaxCalculators
 
 
         }
+
+        [Fact]
+        public void Calc_Tax_operations()
+        {
+            Stock stockAverage = new Stock();
+
+
+            List<Operation> operations = new List<Operation>();
+            operations.Add(new Operation { OperationType = OperationType.BUY, Quantity = 1000, UnitCost = 50.00M });
+            operations.Add(new Operation { OperationType = OperationType.BUY, Quantity = 1000, UnitCost = 50.00M });
+
+
+        }
+
+
 
     }
 }

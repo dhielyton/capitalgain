@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using CapitalGain.Domain.Stocks;
+using CapitalGain.Domain.Operations;
 
 namespace CapitalGain.UnitTest.StockAvarageCalculators
 {
@@ -17,10 +18,12 @@ namespace CapitalGain.UnitTest.StockAvarageCalculators
         [InlineData(10,20.00,5,10.00,16.67)]
         public void Calc_stock_avarage_with_sucess(int currentStockAmount, decimal currentWeightMedia, int stockQuantity, decimal stockPurchaseValue, decimal expectedResult)
         {
-            StockAverageCalculator stockAvarageCalculator = new StockAverageCalculator();
-            var newWeightMedia = stockAvarageCalculator.Average(currentStockAmount, currentWeightMedia, stockQuantity, stockPurchaseValue);
+            var newWeightMedia = StockAverageCalculator.Average(currentStockAmount, currentWeightMedia, stockQuantity, stockPurchaseValue);
             newWeightMedia.Should().Be(expectedResult);
-
         }
+
+       
     }
+
+    
 }

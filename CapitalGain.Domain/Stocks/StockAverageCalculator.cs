@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CapitalGain.Domain.Stocks
 {
-    public class StockAverageCalculator
+    public static class StockAverageCalculator
     {
-        public decimal Average(int currentStockAmount, decimal currentWeightMedia, int stockQuantity, decimal stockPurchaseValue)
+        public static decimal Average(int currentStockAmount, decimal currentWeightMedia, int stockQuantity, decimal stockPurchaseValue)
         {
             var average = ((currentStockAmount * currentWeightMedia) + (stockQuantity * stockPurchaseValue)) / (currentStockAmount + stockQuantity);
             return average.RoundValue();

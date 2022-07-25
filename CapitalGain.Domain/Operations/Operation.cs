@@ -14,6 +14,7 @@ namespace CapitalGain.Domain.Operations
         public decimal UnitCost { get; set; }
         public int Quantity { get; set; }
         public decimal Total { get; private set; }
+        public decimal Tax { get; set; }
 
         public void Process()
         {
