@@ -42,8 +42,14 @@ namespace CapitalGain.Domain.Stocks
             operation.Tax = 0.00M;
             if (operation.OperationType == OperationType.BUY)
                 return;
-            operation.Tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit,Loss);
+            var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit,Loss);
 
+            if(tax > 0.00M)
+            {
+                Profit = 0.00M;
+                Loss = 0.00M;
+            }
+            operation.Tax = tax;
 
         }
 

@@ -10,7 +10,10 @@ namespace CapitalGain.Domain.Operations
 {
     public class Operation
     {
-        
+        public Operation()
+        {
+            Stock = new Stock();
+        }
         public OperationType OperationType { get; set; }
         public decimal UnitCost { get; set; }
         public int Quantity { get; set; }
