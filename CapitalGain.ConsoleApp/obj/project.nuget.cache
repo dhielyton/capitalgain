@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZviK5/l6uXzfu9kwd65qiAp4pgVLDcvjzLj237nZYRM9kHGIxImJyoHL024ZTXX8S0jFVmMZg7el8C2iAO2+gA==",
+  "dgSpecHash": "+4xoq+KKsm6mqyGOjyH6eYMUU04XEubThqIdFbt6xlhQyKuLZc6ggYHpTTT9y5ntdE9sFtYanDttUqz4YEln2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dhielyton\\source\\capitalgain\\CapitalGain.ConsoleApp\\CapitalGain.ConsoleApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dhielyton\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.14.0\\microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512",
     "C:\\Users\\Dhielyton\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
