@@ -32,10 +32,12 @@ namespace CapitalGain.Domain.Stocks
 
         public void ProcessTax(Operation operation)
         {
+            operation.Tax = 0.00M;
             if (operation.OperationType == OperationType.BUY)
                 return;
-            
-           
+            operation.Tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit,Loss);
+
+
         }
 
         public void ProcessProfitOrLoss(Operation operation)
@@ -51,7 +53,7 @@ namespace CapitalGain.Domain.Stocks
                 else
                 {
                     var percentLoss = operation.UnitCost / WeightedAverage;
-                    Loss = percentLoss * (operation.Quantity * WeightedAverage);
+                    Loss += percentLoss * (operation.Quantity * WeightedAverage);
 
                 }
             }

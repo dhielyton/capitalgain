@@ -59,16 +59,21 @@ namespace CapitalGain.UnitTest.Stocks
             List<Operation> operations = new List<Operation>();
             operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000 });
             operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 5000 });
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 5.00M, Quantity = 5000 });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 5.00M, Quantity = 5000 });
 
             foreach (var operation in operations)
             {
+                operation.Process();
+                stock.ProcessProfitOrLoss(operation);
                 stock.ProcessTax(operation);
+                stock.ProcessWeightedAverage(operation);
                 stock.ProcessQuantity(operation);
             }
 
-            stock.Quantity.Should().Be(10);
-
+            var arrayResults = operations.ToArray();
+            arrayResults[0].Tax.Should().Be(0.00M);
+            arrayResults[1].Tax.Should().Be(10000.00M);
+            arrayResults[2].Tax.Should().Be(0.00M);
         }
 
         [Fact]
