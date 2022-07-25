@@ -18,6 +18,15 @@ namespace CapitalGain.Application.Helper
             return operation;
         }
 
+        public static List<Operation> Convert(this List<OperationDTO> operationsDTO)
+        {
+            var operationsEntity = new List<Operation>();
+            foreach (var operationDTO in operationsDTO)
+            {
+                operationsEntity.Add(operationDTO.Convert());
+            }
+            return operationsEntity;
+        }
         public static Operation Convert(this OperationDTO operationDTO)
         {
             var operation = new Operation();
@@ -35,9 +44,9 @@ namespace CapitalGain.Application.Helper
             return operation;
         }
 
-        public static TaxDTO Convert(this Operation operation)
+        public static List<TaxDTO> Convert(this List<Operation> operations)
         {
-            return new TaxDTO { Tax = operation.Tax };
+           return operations.Select(o => new TaxDTO { Tax = o.Tax }).ToList();
         }
     }
 }

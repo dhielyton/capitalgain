@@ -10,16 +10,20 @@ namespace CapitalGain.Application.Service
 {
     public class OperationService
     {
+        private Domain.Operations.OperationService _operationService;
+        public OperationService(Domain.Operations.OperationService operationService)
+        {
+            _operationService = operationService;
+        }
         public List<TaxDTO> Process(string operationsJson)
         {
-            var opertions = operationsJson.Convert();
-            foreach (var operation in opertions)
-            {
+            var operationsDTO = operationsJson.Convert();
 
+            var operationsEntity = operationsDTO.Convert();
 
-            }
+            _operationService.Process(operationsEntity);
 
-            return null;
+            return operationsEntity.Convert();
 
         }
     }

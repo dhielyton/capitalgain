@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CapitalGain.Domain.Stocks;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,12 @@ namespace CapitalGain.Domain.Operations
         public decimal Total { get; private set; }
         public decimal Tax { get; set; }
 
+        public Stock Stock { get; set; }
+
         public void Process()
         {
             Total = Quantity * UnitCost;
+            Stock.ProcessOperation(this);
             
         }
 

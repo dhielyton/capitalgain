@@ -10,11 +10,18 @@ namespace CapitalGain.Domain.Stocks
     public class Stock
     {
 
-        public int Quantity { get; set; }
-        public decimal WeightedAverage { get; set; }
-        public decimal Loss { get; set; }
-        public decimal Profit { get; set; }
+        public int Quantity { get; private set; }
+        public decimal WeightedAverage { get; private set; }
+        public decimal Loss { get; private set; }
+        public decimal Profit { get; private set; }
 
+        public void ProcessOperation(Operation operation)
+        {
+            ProcessProfitOrLoss(operation);
+            ProcessTax(operation);
+            ProcessWeightedAverage(operation);
+            ProcessQuantity(operation);
+        }
         public void ProcessWeightedAverage(Operation operation)
         {
             if (operation.OperationType == OperationType.BUY)

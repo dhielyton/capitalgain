@@ -18,16 +18,14 @@ namespace CapitalGain.UnitTest.Stocks
         {
             var stock = new Stock();
             List<Operation> operations = new List<Operation>();
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 20.00M, Quantity = 10 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 15.00M, Quantity = 5 });
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 5 });
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 20.00M, Quantity = 10, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 15.00M, Quantity = 5, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 5, Stock = stock });
 
             foreach (var operation in operations)
             {
-                stock.ProcessWeightedAverage(operation);
-                stock.ProcessQuantity(operation);
+                operation.Process();
             }
-
             stock.WeightedAverage.Should().Be(15.00M);
 
         }
@@ -38,16 +36,14 @@ namespace CapitalGain.UnitTest.Stocks
         {
             var stock = new Stock();
             List<Operation> operations = new List<Operation>();
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 20.00M, Quantity = 10 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 15.00M, Quantity = 5 });
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 5 });
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 20.00M, Quantity = 10, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 15.00M, Quantity = 5, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 5, Stock = stock });
 
             foreach (var operation in operations)
             {
-               
-                stock.ProcessQuantity(operation);
+                operation.Process();
             }
-
             stock.Quantity.Should().Be(10);
 
         }
@@ -57,17 +53,13 @@ namespace CapitalGain.UnitTest.Stocks
         {
             var stock = new Stock();
             List<Operation> operations = new List<Operation>();
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 5000 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 5.00M, Quantity = 5000 });
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 5000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 5.00M, Quantity = 5000 , Stock = stock });
 
             foreach (var operation in operations)
             {
                 operation.Process();
-                stock.ProcessProfitOrLoss(operation);
-                stock.ProcessTax(operation);
-                stock.ProcessWeightedAverage(operation);
-                stock.ProcessQuantity(operation);
             }
 
             var arrayResults = operations.ToArray();
@@ -81,21 +73,17 @@ namespace CapitalGain.UnitTest.Stocks
         {
             var stock = new Stock();
             List<Operation> operations = new List<Operation>();
-            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 5000 });
-            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 5.00M, Quantity = 5000 });
-            
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 5000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 5.00M, Quantity = 5000, Stock = stock });
+
             foreach (var operation in operations)
             {
                 operation.Process();
-
-                stock.ProcessProfitOrLoss(operation);
-                stock.ProcessWeightedAverage(operation);
-                stock.ProcessQuantity(operation);
             }
             stock.Profit.Should().Be(50000.00M);
             stock.Loss.Should().Be(25000.00M);
-            
+
         }
     }
 }
