@@ -1,4 +1,5 @@
 ﻿using CapitalGain.Domain.Helper;
+using System;
 
 namespace CapitalGain.Domain.Stocks
 {
@@ -56,13 +57,15 @@ namespace CapitalGain.Domain.Stocks
                 if (WeightedAveragePrice == operation.UnitCost)
                     return;
 
-                if (WeightedAveragePrice < operation.UnitCost)
+                var capitalGain = CapitalGainCalculator.Calc(WeightedAveragePrice, operation.UnitCost, operation.Quantity, operation.Total);
+
+                if (capitalGain > 0.00M)
                 {
-                    var precentProfit = 1.00M - (WeightedAveragePrice / operation.UnitCost);
-                    Profit = (operation.Total * precentProfit).RoundValue();
+                    Profit = capitalGain;
                 }
                 else
-                    Loss += (operation.Quantity * WeightedAveragePrice) - (operation.Total);
+                    Loss += Math.Abs(capitalGain);
+
                 if (Profit > Loss)
                 {
                     Profit -= Loss;
