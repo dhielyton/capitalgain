@@ -17,12 +17,12 @@ namespace CapitalGain.Domain.Stocks
 
         public decimal ExemptionLimit { get; private set; }
         public decimal PercentualTax { get; private set; }
-        public decimal CalcTaxValue(decimal profit, decimal loss)
+        public decimal CalcTaxValue(decimal profit,decimal totalOperation)
         {
             
-            if(profit >= ExemptionLimit)
+            if(totalOperation >= ExemptionLimit)
             {
-                return ((profit-loss) * (PercentualTax / 100)).RoundValue();
+                return ((profit) * (PercentualTax / 100)).RoundValue();
             }
 
             return 0.00M;

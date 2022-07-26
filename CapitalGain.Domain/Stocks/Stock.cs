@@ -37,14 +37,14 @@ namespace CapitalGain.Domain.Stocks
             operation.Tax = 0.00M;
             if (operation.OperationType == OperationType.BUY)
                 return;
-            var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit, Loss);
+            var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit, operation.Total);
 
             if (tax > 0.00M)
             {
                 Profit = 0.00M;
                 Loss = 0.00M;
             }
-            
+
             operation.Tax = tax;
 
         }
@@ -60,11 +60,26 @@ namespace CapitalGain.Domain.Stocks
                 {
                     var precentProfit = 1.00M - (WeightedAverage / operation.UnitCost);
                     Profit = (operation.Total * precentProfit).RoundValue();
+                }
+                else
+                    Loss += (operation.Quantity * WeightedAverage) - (operation.Total);
+                if (Profit > Loss)
+                {
+                    Profit -= Loss;
+                    Loss = 0.00M;
                     return;
-
                 }
 
-                Loss += (operation.Quantity * WeightedAverage) -(operation.Total);
+                if (Profit < Loss)
+                {
+                    Loss -= Profit;
+                    Profit = 0.00M;
+                    return;
+                }
+
+                Profit = 0.00M;
+                Loss = 0.00M;
+
 
             }
         }

@@ -80,5 +80,25 @@ namespace CapitalGain.UnitTest.Stocks
             stock.Loss.Should().Be(25000.00M);
 
         }
+
+        [Fact]
+        public void Process_loss_acumalated()
+        {
+            var stock = new Stock();
+            List<Operation> operations = new List<Operation>();
+            operations.Add(new Operation { OperationType = OperationType.BUY, UnitCost = 10.00M, Quantity = 10000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 2.00M, Quantity = 5000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 2000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 2000, Stock = stock });
+            operations.Add(new Operation { OperationType = OperationType.SELL, UnitCost = 20.00M, Quantity = 1000, Stock = stock });
+
+            foreach (var operation in operations)
+            {
+                operation.Process();
+            }
+            
+            stock.Loss.Should().Be(0.00M);
+            
+        }
     }
 }
