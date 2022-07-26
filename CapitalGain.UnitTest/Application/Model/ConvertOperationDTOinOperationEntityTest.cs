@@ -5,7 +5,7 @@ using CapitalGain.Application.Helper;
 using FluentAssertions;
 using CapitalGain.Domain.Stocks;
 
-namespace CapitalGain.UnitTest.Operations
+namespace CapitalGain.UnitTest.Application.Model
 {
     public class ConvertOperationDTOinOperationEntityTest
     {

@@ -39,11 +39,12 @@ namespace CapitalGain.Domain.Stocks
                 return;
             var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit, Loss);
 
-            
-            if(Loss> 0.00M)
+            if (tax > 0.00M)
             {
-
+                Profit = 0.00M;
+                Loss = 0.00M;
             }
+            
             operation.Tax = tax;
 
         }

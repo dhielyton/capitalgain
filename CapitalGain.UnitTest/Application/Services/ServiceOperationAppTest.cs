@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CapitalGain.UnitTest
+namespace CapitalGain.UnitTest.Application.Services
 {
     public class ServiceOperationAppTest
     {
