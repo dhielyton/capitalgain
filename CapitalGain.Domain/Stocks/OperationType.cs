@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitalGain.Domain.Operations
+namespace CapitalGain.Domain.Stocks
 {
     public enum OperationType
     {

@@ -1,9 +1,4 @@
-﻿using CapitalGain.Domain.Operations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CapitalGain.Domain.Helper;
 
 namespace CapitalGain.Domain.Stocks
 {
@@ -42,12 +37,12 @@ namespace CapitalGain.Domain.Stocks
             operation.Tax = 0.00M;
             if (operation.OperationType == OperationType.BUY)
                 return;
-            var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit,Loss);
+            var tax = TaxCalculator.CreateTaxtCalulator().CalcTaxValue(Profit, Loss);
 
-            if(tax > 0.00M)
+            
+            if(Loss> 0.00M)
             {
-                Profit = 0.00M;
-                Loss = 0.00M;
+
             }
             operation.Tax = tax;
 
@@ -57,18 +52,19 @@ namespace CapitalGain.Domain.Stocks
         {
             if (operation.OperationType == OperationType.SELL)
             {
+                if (WeightedAverage == operation.UnitCost)
+                    return;
+
                 if (WeightedAverage < operation.UnitCost)
                 {
-                    var precentProfit = WeightedAverage / operation.UnitCost;
-                    Profit = operation.Total * precentProfit;
+                    var precentProfit = 1.00M - (WeightedAverage / operation.UnitCost);
+                    Profit = (operation.Total * precentProfit).RoundValue();
+                    return;
 
                 }
-                else
-                {
-                    var percentLoss = operation.UnitCost / WeightedAverage;
-                    Loss += percentLoss * (operation.Quantity * WeightedAverage);
 
-                }
+                Loss += (operation.Quantity * WeightedAverage) -(operation.Total);
+
             }
         }
     }

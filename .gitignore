@@ -10,3 +10,7 @@
 /CapitalGain.UnitTest/obj
 /.vs
 /CapitalGain.ConsoleApp/obj/Debug/net5.0
+*.dll
+*.pdb
+/CapitalGain.ConsoleApp/bin/Debug/net5.0
+/CapitalGain.ConsoleApp/obj/Container

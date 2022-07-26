@@ -1,13 +1,9 @@
 ﻿using CapitalGain.Application.Model;
-using CapitalGain.Domain.Operations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using CapitalGain.Application.Helper;
 using FluentAssertions;
+using CapitalGain.Domain.Stocks;
 
 namespace CapitalGain.UnitTest.Operations
 {

@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CapitalGain.Application.Service
 {
     public class OperationService
     {
-        private Domain.Operations.OperationService _operationService;
-        public OperationService(Domain.Operations.OperationService operationService)
+        private Domain.Stocks.OperationService _operationService;
+        public OperationService(Domain.Stocks.OperationService operationService)
         {
             _operationService = operationService;
         }
@@ -25,6 +26,11 @@ namespace CapitalGain.Application.Service
 
             return operationsEntity.Convert();
 
+        }
+
+        public string ProcessAsJson(string operationsJson)
+        {
+            return JsonSerializer.Serialize(Process(operationsJson));
         }
     }
 }

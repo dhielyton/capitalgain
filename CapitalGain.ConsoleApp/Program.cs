@@ -8,7 +8,7 @@ namespace CapitalGain.ConsoleApp
     {
         static void Main(string[] args)
         {
-            OperationService operationService = new OperationService(new Domain.Operations.OperationService());
+            OperationService operationService = new OperationService(new Domain.Stocks.OperationService());
             List<string> lines = new List<string>();
             string line = string.Empty;
             do
@@ -21,8 +21,10 @@ namespace CapitalGain.ConsoleApp
 
             foreach (var item in lines)
             {
-                operationService.Process(item);
+                Console.WriteLine( operationService.ProcessAsJson(item));
             }
+
+            Console.ReadKey();
         }
     }
 }

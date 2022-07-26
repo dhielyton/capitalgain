@@ -1,11 +1,6 @@
-﻿using CapitalGain.Domain.Operations;
-using CapitalGain.Domain.Stocks;
+﻿using CapitalGain.Domain.Stocks;
 using FluentAssertions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CapitalGain.UnitTest.Stocks
@@ -81,7 +76,7 @@ namespace CapitalGain.UnitTest.Stocks
             {
                 operation.Process();
             }
-            stock.Profit.Should().Be(50000.00M);
+            stock.Profit.Should().Be(0.00M);
             stock.Loss.Should().Be(25000.00M);
 
         }
