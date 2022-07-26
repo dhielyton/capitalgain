@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace CapitalGain.UnitTest.Operations
+namespace CapitalGain.UnitTest.Application.Model
 {
     public class ConvertJsonInOperationDTOTest
     {

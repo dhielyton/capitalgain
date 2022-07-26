@@ -6,7 +6,7 @@ namespace CapitalGain.Domain.Stocks
     {
 
         public int Quantity { get; private set; }
-        public decimal WeightedAverage { get; private set; }
+        public decimal WeightedAveragePrice { get; private set; }
         public decimal Loss { get; private set; }
         public decimal Profit { get; private set; }
 
@@ -17,13 +17,13 @@ namespace CapitalGain.Domain.Stocks
             ProcessWeightedAverage(operation);
             ProcessQuantity(operation);
         }
-        public void ProcessWeightedAverage(Operation operation)
+        private void ProcessWeightedAverage(Operation operation)
         {
             if (operation.OperationType == OperationType.BUY)
-                WeightedAverage = StockAverageCalculator.Average(Quantity, WeightedAverage, operation.Quantity, operation.UnitCost);
+                WeightedAveragePrice = StockAverageCalculator.Average(Quantity, WeightedAveragePrice, operation.Quantity, operation.UnitCost);
         }
 
-        public void ProcessQuantity(Operation operation)
+        private void ProcessQuantity(Operation operation)
         {
             if (operation.OperationType == OperationType.BUY)
                 Quantity += operation.Quantity;
@@ -32,7 +32,7 @@ namespace CapitalGain.Domain.Stocks
         }
 
 
-        public void ProcessTax(Operation operation)
+        private void ProcessTax(Operation operation)
         {
             operation.Tax = 0.00M;
             if (operation.OperationType == OperationType.BUY)
@@ -49,20 +49,20 @@ namespace CapitalGain.Domain.Stocks
 
         }
 
-        public void ProcessProfitOrLoss(Operation operation)
+        private void ProcessProfitOrLoss(Operation operation)
         {
             if (operation.OperationType == OperationType.SELL)
             {
-                if (WeightedAverage == operation.UnitCost)
+                if (WeightedAveragePrice == operation.UnitCost)
                     return;
 
-                if (WeightedAverage < operation.UnitCost)
+                if (WeightedAveragePrice < operation.UnitCost)
                 {
-                    var precentProfit = 1.00M - (WeightedAverage / operation.UnitCost);
+                    var precentProfit = 1.00M - (WeightedAveragePrice / operation.UnitCost);
                     Profit = (operation.Total * precentProfit).RoundValue();
                 }
                 else
-                    Loss += (operation.Quantity * WeightedAverage) - (operation.Total);
+                    Loss += (operation.Quantity * WeightedAveragePrice) - (operation.Total);
                 if (Profit > Loss)
                 {
                     Profit -= Loss;

@@ -21,7 +21,7 @@ namespace CapitalGain.UnitTest.Stocks
             {
                 operation.Process();
             }
-            stock.WeightedAverage.Should().Be(15.00M);
+            stock.WeightedAveragePrice.Should().Be(15.00M);
 
         }
 
