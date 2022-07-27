@@ -13,6 +13,7 @@ namespace CapitalGain.ConsoleApp
             string line = string.Empty;
             do
             {
+                
                 line = Console.ReadLine();
                 if(!string.IsNullOrWhiteSpace(line))
                     lines.Add(line);

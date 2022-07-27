@@ -14,3 +14,6 @@
 *.pdb
 /CapitalGain.ConsoleApp/bin/Debug/net5.0
 /CapitalGain.ConsoleApp/obj/Container
+/bin/Debug
+/CapitalGain.ConsoleApp/obj/Docker
+/obj

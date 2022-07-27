@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  capitalgain.consoleapp:
+    image: ${DOCKER_REGISTRY-}capitalgainconsoleapp
+    build:
+      context: .
+      dockerfile: CapitalGain.ConsoleApp/Dockerfile
